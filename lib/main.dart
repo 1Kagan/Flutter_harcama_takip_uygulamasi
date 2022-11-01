@@ -1,49 +1,97 @@
 import 'package:flutter/material.dart';
-//Kağan Kılıç'ın ilk projesidir.
-//başlangıç Tarihi:07.10.2022
+import './widgets/islemler_list.dart';
+import '../widgets/new_islemler.dart';
+import './models/islemler.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  var questionIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter App',
+      home: MyHomePage(),
+    );
+  }
+}
 
-  void answerQuestions() {
-    questionIndex = questionIndex + 1;
-    print(questionIndex);
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  //String tittleinput;
+
+  final List<islemler> _userislemler = [
+    islemler(
+      id: 't1',
+      title: 'Yeni Ayakkabı',
+      amount: 69.99,
+      date: DateTime.now(),
+    ),
+  ];
+
+  void _addNewislemler(String ixtitle, double ixamount) {
+    final newix = islemler(
+      title: ixtitle,
+      amount: ixamount,
+      date: DateTime.now(),
+      id: DateTime.now().toString(),
+    );
+    setState(() {
+      _userislemler.add(newix);
+    });
+  }
+
+  void _startAddNewislemler(BuildContext cix) {
+    showModalBottomSheet(
+      context: cix,
+      builder: (_) {
+        return GestureDetector(
+          onTap: () {},
+          child: Newislemler(_addNewislemler),
+          behavior: HitTestBehavior.opaque,
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      'En sevdiğin renk nedir?',
-      'En sevdiğin hayvan nedir?',
-    ];
-
-    return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(
-          title: Text(
-        'Benim İlk Uygulamam',
-      )),
-      body: Column(
-        children: [
-          Text(
-            questions[questionIndex],
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          title: Text('Harcama Kaydı'),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () => _startAddNewislemler(context),
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                width: double.infinity,
+                child: Card(
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  child: Text('Kartlar!'),
+                  elevation: 100,
+                ),
+              ),
+              islemlerList(_userislemler)
+            ],
           ),
-          ElevatedButton(
-            child: Text('Cevap 1'),
-            onPressed: answerQuestions,
-          ),
-          ElevatedButton(
-            child: Text('Cevap 2'),
-            onPressed: () => print('Cevap 2 Seçildi'),
-          ),
-          ElevatedButton(
-            child: Text('Cevap 3'),
-            onPressed: () => print('Cevap 3 Seçildi'),
-          ),
-        ],
-      ),
-    ));
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          onPressed: () => _startAddNewislemler(context),
+        ));
   }
 }

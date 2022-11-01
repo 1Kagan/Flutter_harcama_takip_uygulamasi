@@ -1,0 +1,5 @@
+{
+    "git.autoRepositoryDetection": true,
+    "git.enabled": true,
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
