@@ -1,6 +1,7 @@
 # flutter_learning_app
 
-A new Flutter project.
+Yeni Flutter Projem
+.
 
 ## Getting Started
 
