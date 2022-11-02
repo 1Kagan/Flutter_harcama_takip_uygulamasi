@@ -26,6 +26,7 @@ class _NewislemlerState extends State<Newislemler> {
       enteredTitle,
       enteredAmount,
     );
+    Navigator.of(context).pop();
   }
 
   @override

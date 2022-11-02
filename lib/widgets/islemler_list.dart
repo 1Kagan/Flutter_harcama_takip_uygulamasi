@@ -23,7 +23,7 @@ class islemlerList extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Color.fromARGB(255, 255, 60, 0),
+                        color: Theme.of(context).primaryColor,
                         width: 3,
                       ),
                     ),
@@ -31,7 +31,7 @@ class islemlerList extends StatelessWidget {
                     child: Text(
                       '\$${islemlers[index].amount}',
                       style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
+                        color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
@@ -42,18 +42,15 @@ class islemlerList extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           islemlers[index].title,
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.headline6,
                         ),
                         Text(
                           DateFormat.yMMMMd("en_Us")
                               .format(islemlers[index].date),
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: Colors.grey,
+                            fontFamily: 'OpenSans',
+                            fontSize: 10,
+                            color: Colors.black,
                           ),
                         )
                       ])

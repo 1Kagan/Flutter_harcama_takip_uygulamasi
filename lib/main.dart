@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import './widgets/islemler_list.dart';
 import '../widgets/new_islemler.dart';
@@ -10,6 +12,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Harcama Uygulaması',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        accentColor: Colors.white,
+        fontFamily: 'Quicsand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(
+              fontFamily: 'OpenSans',
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            )),
+        appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(
+              fontFamily: 'OpenSans',
+              fontSize: 20,
+              fontWeight: FontWeight.bold),
+        ),
+      ),
       home: MyHomePage(),
     );
   }
@@ -24,12 +43,12 @@ class _MyHomePageState extends State<MyHomePage> {
   //String tittleinput;
 
   final List<islemler> _userislemler = [
-    islemler(
-      id: 't1',
-      title: 'Yeni Ayakkabı',
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
+    // islemler(
+    //   id: 't1',
+    //   title: 'Yeni Ayakkabı',
+    //   amount: 69.99,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   void _addNewislemler(String ixtitle, double ixamount) {
@@ -61,8 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
-          title: Text('Harcama Kaydı'),
+          title: Text(
+            'Harcama Kaydı',
+          ),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.add),
@@ -78,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 width: double.infinity,
                 child: Card(
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: Colors.green,
                   child: Text('Kartlar!'),
                   elevation: 100,
                 ),
@@ -90,7 +110,6 @@ class _MyHomePageState extends State<MyHomePage> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
           onPressed: () => _startAddNewislemler(context),
         ));
   }
