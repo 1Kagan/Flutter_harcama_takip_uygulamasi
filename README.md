@@ -1,4 +1,4 @@
-# flutter_learning_app
+# flutter_real_app_by_kagan
 
 Yeni Flutter Projem.
 
