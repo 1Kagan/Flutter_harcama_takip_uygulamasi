@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import './widgets/islemler_list.dart';
 import '../widgets/new_islemler.dart';
 import './models/islemler.dart';
+import '../widgets/kart.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
                 headline6: TextStyle(
               fontFamily: 'OpenSans',
               fontWeight: FontWeight.bold,
-              fontSize: 16,
+              fontSize: 18,
             )),
         appBarTheme: AppBarTheme(
           titleTextStyle: TextStyle(
@@ -50,6 +51,18 @@ class _MyHomePageState extends State<MyHomePage> {
     //   date: DateTime.now(),
     // ),
   ];
+
+  List<islemler> get _recentTransactions {
+    return _userislemler.where((cix) {
+      return cix.date.isAfter(
+        DateTime.now().subtract(
+          Duration(
+            days: 7,
+          ),
+        ),
+      );
+    }).toList();
+  }
 
   void _addNewislemler(String ixtitle, double ixamount) {
     final newix = islemler(
@@ -95,14 +108,16 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Container(
-                width: double.infinity,
-                child: Card(
-                  color: Colors.green,
-                  child: Text('Kartlar!'),
-                  elevation: 100,
-                ),
-              ),
+              Kart(_recentTransactions),
+
+              // Container(
+              //   width: double.infinity,
+              //   child: Card(
+              //     color: Colors.green,
+              //     child: Text('Kartlar!'),
+              //     elevation: 100,
+              //   ),
+              // ),
               islemlerList(_userislemler)
             ],
           ),
