@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/islemler.dart';
+import '../widgets/kart_board.dart';
 
 class Kart extends StatelessWidget {
   final List<islemler> recentTransactions;
