@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:real_app_by_kagan/widgets/kart.dart';
 
 class KartBar extends StatelessWidget {
   final String label;
@@ -12,7 +11,12 @@ class KartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Text('\$${spendingAmount.toStringAsFixed(0)}'),
+        Container(
+          height: 20,
+          child: FittedBox(
+            child: Text('\$${spendingAmount.toStringAsFixed(0)}'),
+          ),
+        ),
         SizedBox(
           height: 4,
         ),
@@ -23,16 +27,19 @@ class KartBar extends StatelessWidget {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 1.0),
-                  color: Color.fromARGB(220, 220, 220, 1),
-                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.black, width: 1.0),
+                  color: Color.fromARGB(220, 5, 240, 76),
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
               FractionallySizedBox(
                 heightFactor: spendingPctOfTotal,
                 child: Container(
-                  decoration:
-                      BoxDecoration(color: Theme.of(context).primaryColor),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black, width: 1.0),
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               )
             ],

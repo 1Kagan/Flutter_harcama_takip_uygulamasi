@@ -53,12 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   List<islemler> get _recentTransactions {
-    return _userislemler.where((cix) {
-      return cix.date.isAfter(
+    return _userislemler.where((tx) {
+      return tx.date.isAfter(
         DateTime.now().subtract(
-          Duration(
-            days: 7,
-          ),
+          Duration(days: 7),
         ),
       );
     }).toList();
@@ -76,9 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _startAddNewislemler(BuildContext cix) {
+  void _startAddNewislemler(BuildContext tx) {
     showModalBottomSheet(
-      context: cix,
+      context: tx,
       builder: (_) {
         return GestureDetector(
           onTap: () {},

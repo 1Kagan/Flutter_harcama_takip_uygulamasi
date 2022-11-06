@@ -14,7 +14,7 @@ class _NewislemlerState extends State<Newislemler> {
 
   final amountController = TextEditingController();
 
-  void submitData() {
+  void _submitData() {
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
 
@@ -29,6 +29,14 @@ class _NewislemlerState extends State<Newislemler> {
     Navigator.of(context).pop();
   }
 
+  void _presentDatePicker() {
+    showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2022),
+        lastDate: DateTime.now());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -41,17 +49,32 @@ class _NewislemlerState extends State<Newislemler> {
             TextField(
               decoration: InputDecoration(labelText: 'İsim'),
               controller: titleController,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Fiyat'),
               controller: amountController,
               keyboardType: TextInputType.number,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
             ),
-            TextButton(
+            Container(
+              height: 50,
+              child: Row(
+                children: <Widget>[
+                  Text('Tarih Seçimi Yapılmadı !'),
+                  TextButton(
+                    child: Text(
+                      'Tarih Seçin',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: _presentDatePicker,
+                  )
+                ],
+              ),
+            ),
+            ElevatedButton(
               child: Text('İşlem Ekleyiniz !'),
-              onPressed: submitData,
+              onPressed: _submitData,
             ),
           ],
         ),

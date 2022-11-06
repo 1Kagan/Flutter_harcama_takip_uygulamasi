@@ -29,49 +29,27 @@ class islemlerList extends StatelessWidget {
               ],
             )
           : ListView.builder(
-              itemBuilder: (cix, index) {
+              itemBuilder: (tx, index) {
                 return Card(
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 25,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Theme.of(context).primaryColor,
-                            width: 3,
-                          ),
-                        ),
-                        padding: EdgeInsets.all(8),
-                        child: Text(
-                          '\$${islemlers[index].amount}',
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              islemlers[index].title,
-                              style: Theme.of(context).textTheme.headline6,
-                            ),
-                            Text(
-                              DateFormat.yMMMMd("en_Us")
-                                  .format(islemlers[index].date),
-                              style: TextStyle(
-                                fontFamily: 'OpenSans',
-                                fontSize: 10,
-                                color: Colors.black,
-                              ),
-                            )
-                          ])
-                    ],
+                  margin: EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 10,
+                  ),
+                  elevation: 5,
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 33,
+                      child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: FittedBox(
+                              child: Text('\$${islemlers[index].amount}'))),
+                    ),
+                    title: Text(
+                      islemlers[index].title,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    subtitle:
+                        Text(DateFormat.yMMMd().format(islemlers[index].date)),
                   ),
                 );
               },
