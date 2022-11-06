@@ -28,7 +28,7 @@ class KartBar extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 1.0),
-                  color: Color.fromARGB(220, 5, 240, 76),
+                  color: Color.fromARGB(220, 255, 255, 255),
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),

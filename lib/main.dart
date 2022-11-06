@@ -62,11 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewislemler(String ixtitle, double ixamount) {
+  void _addNewislemler(String ixtitle, double ixamount, DateTime chosenDate) {
     final newix = islemler(
       title: ixtitle,
       amount: ixamount,
-      date: DateTime.now(),
+      date: chosenDate,
       id: DateTime.now().toString(),
     );
     setState(() {
