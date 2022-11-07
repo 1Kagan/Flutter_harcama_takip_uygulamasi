@@ -4,8 +4,9 @@ import '../models/islemler.dart';
 
 class islemlerList extends StatelessWidget {
   final List<islemler> islemlers;
+  final Function deleteTx;
 
-  islemlerList(this.islemlers);
+  islemlerList(this.islemlers, this.deleteTx);
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +49,14 @@ class islemlerList extends StatelessWidget {
                       islemlers[index].title,
                       style: Theme.of(context).textTheme.headline6,
                     ),
-                    subtitle:
-                        Text(DateFormat.yMMMd().format(islemlers[index].date)),
+                    subtitle: Text(
+                      DateFormat.yMMMd().format(islemlers[index].date),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      color: Theme.of(context).errorColor,
+                      onPressed: () => deleteTx(islemlers[index].id),
+                    ),
                   ),
                 );
               },

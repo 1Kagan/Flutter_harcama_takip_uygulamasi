@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         accentColor: Colors.white,
+        errorColor: Colors.red,
         fontFamily: 'Quicsand',
         textTheme: ThemeData.light().textTheme.copyWith(
                 headline6: TextStyle(
@@ -87,6 +88,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _silislemler(String id) {
+    setState(() {
+      _userislemler.removeWhere((tx) => tx.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,12 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(
             'Harcama Kaydı',
           ),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () => _startAddNewislemler(context),
-            ),
-          ],
+          actions: <Widget>[],
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -107,16 +109,12 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Kart(_recentTransactions),
-
-              // Container(
-              //   width: double.infinity,
-              //   child: Card(
-              //     color: Colors.green,
-              //     child: Text('Kartlar!'),
-              //     elevation: 100,
-              //   ),
-              // ),
-              islemlerList(_userislemler)
+              SizedBox(
+                height: 5,
+              ),
+              islemlerList(_userislemler, _silislemler)
+              //Kart ve işlemlerList sayesinde ana menüde işlemler ve
+              //grafik görülebiliyor eğer silersek ekranda gözükmezler
             ],
           ),
         ),
